@@ -1,0 +1,41 @@
+{
+  "name": "polygonchart.js",
+  "version": "0.0.1",
+  "description": "🔺 A library to graph numerical data using simple polygon visualizations.",
+  "homepage": "https://github.com/miscavage/polygonchart.js",
+  "author": "Mark Miscavage",
+  "license": "MIT",
+  "main": "dist/PolygonChart.cjs.js",
+  "module": "dist/PolygonChart.esm.js",
+  "browser": "dist/PolygonChart.umd.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "lint": "eslint src/PolygonChart.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "polygon",
+    "chart",
+    "graph",
+    "data",
+    "svg",
+    "library",
+    "visualization"
+  ],
+  "peerDependencies": {
+    "animejs": "^3.0.1",
+    "tippy.js": "^4.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "rollup": "^1.28.0",
+    "rollup-plugin-babel-minify": "^9.1.1",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0"
+  }
+}
