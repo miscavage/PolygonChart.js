@@ -24,7 +24,7 @@
 <script src="../../dist/polygonchart.umd.js"></script>
 
 <script type="text/javascript">
-  let sides = 5;
+  let sides = 3;
 
   let data = generateRandomData(10, sides);
 
@@ -49,7 +49,7 @@
         },
         onHover: {
           polygonStroke: "#A54AE9",
-          polyonFill: "#a54ae96f",
+          polygonFill: "rgba(0,0,0,0.3)",
           pointStroke: "#A54AE9",
           pointFill: "#fff",
         },
@@ -72,8 +72,8 @@
       labels: {
         enabled: true,
         position: {
-          spline: 1,
-          quadrant: 0,
+          spline: 0,
+          quadrant: 3,
         },
         colors: {
           normal: "#8B27D7",

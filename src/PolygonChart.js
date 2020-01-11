@@ -168,6 +168,7 @@ function PolygonChart(options) {
   let outerRadius = -1;
   let innerRadius = -1;
   let period = -1;
+  let usingQuadrantPositioning = -1;
 
   //
 
@@ -307,7 +308,7 @@ function PolygonChart(options) {
     if (levels === scope.options.levels.count) crosshairGroup = ElementFactory.createSVGElement('g', 'crosshairs');
 
     let points = '';
-    let fey = -1;
+    let fe = -1;
 
     for (let side = 1; side <= scope.options.data.sides; side++) {
       const nextAngle = toRad((period * side) - offset);
@@ -315,7 +316,12 @@ function PolygonChart(options) {
       const ex = radius * Math.cos(nextAngle) + scope.options.radius;
       const ey = radius * Math.sin(nextAngle) + scope.options.radius;
 
-      fey = ey;
+      fe = isEven ? ex : ey;
+
+      // quadrant divide
+      if (usingQuadrantPositioning) {
+        fe -= (ey - ex) / scope.options.data.sides;
+      }
 
       points += `${ex},${ey} `; /* + appended space */
 
@@ -339,11 +345,14 @@ function PolygonChart(options) {
 
     const pointValue = (100 / scope.options.levels.count) * levels;
     const text = `${pointValue}%`;
-    const labelX = `${scope.options.radius}px`;
-    const labelY = `${fey - 2}px`;
+
+    let labelX = `${scope.options.radius}px`;
+    const delta = usingQuadrantPositioning ? 2 : 0;
+    const labelY = `${fe + delta}px`;
     const subY = (text.length - 1) * 6;
-    const rotateY = `${fey - 2 + subY}px`;
-    const divider = 180 / scope.options.data.sides;
+
+    console.log("1fey:", fe);
+
     const label = ElementFactory.makeLabel({
       text,
       x: labelX,
@@ -351,13 +360,50 @@ function PolygonChart(options) {
       color: scope.options.levels.labels.colors.normal,
     });
     label.setAttribute('index', levels);
-    if (scope.options.levels.labels.position.quadrant !== 0) {
-      // : todo :
-    } else if (scope.options.levels.labels.position.spline !== 0) {
-      label.style.setProperty('transform-origin', `${labelX} ${rotateY}`);
-      label.style.setProperty('transform', `rotateZ(${-divider}deg)`);
+
+    if (usingQuadrantPositioning) {
+      const shouldFlip = scope.options.levels.labels.position.quadrant % scope.options.data.sides >= Math.floor(scope.options.data.sides / 2);
+      console.log("shouldFlip:", shouldFlip);
+
+      if (isEven) {
+        //
+      } else {
+        let rotateY = `${fe + subY}px`;
+        let divider = 0;
+
+        if (shouldFlip) {
+          divider = 180;
+          rotateY = labelY;
+        }
+
+        label.style.setProperty('transform-origin', `${labelX} ${rotateY}`);
+        label.style.setProperty('transform', `rotateZ(${divider}deg)`);
+      }
+    } else {
+      let gt = scope.options.data.sides / 2;
+      if (isEven) gt = Math.floor(gt);
+      const shouldFlip = scope.options.levels.labels.position.spline % scope.options.data.sides >= gt;
+      console.log("shouldFlip:", shouldFlip);
+
+      if (isEven) {
+        //
+      } else {
+        let rotateY = `${fe - 2 + subY}px`;
+        let divider = 180 / scope.options.data.sides;
+        if (shouldFlip) {
+          divider += 180;
+          labelX = `${scope.options.radius - 7}px`;
+          rotateY = labelY;
+        }
+
+        label.style.setProperty('transform-origin', `${labelX} ${rotateY}`);
+        label.style.setProperty('transform', `rotateZ(${-divider}deg)`);
+      }
     }
-    labelGroup.appendChild(label);
+
+    if (levels !== 0) {
+      labelGroup.appendChild(label);
+    }
 
     const poly = ElementFactory.makePolygon(points, {
       stroke: scope.options.polygon.colors.normal.stroke,
@@ -389,11 +435,11 @@ function PolygonChart(options) {
     const divider = 180 / scope.options.data.sides;
     let rotate = 0;
 
-    if (scope.options.levels.labels.position.quadrant !== 0) {
+    if (usingQuadrantPositioning) {
       // e.g. 5-sided polygon: 1/36 - 2/108 - 3/180 - 4/252 - 5/324
       // : todo :
       rotate = divider + (divider * 2 * (scope.options.levels.labels.position.quadrant - 1));
-    } else if (scope.options.levels.labels.position.spline !== 0) {
+    } else {
       // e.g. 5-sided polygon:  1/0 - 2/72 - 3/144 - 4/216 - 5/288
       rotate = (divider * 2) * scope.options.levels.labels.position.spline;
     }
@@ -429,7 +475,8 @@ function PolygonChart(options) {
     // set initial rotation angle of polygon
     isEven = (scope.options.data.sides % 2 === 0);
     offset = isEven ? (360 / (scope.options.data.sides * 2)) : 90;
-
+    usingQuadrantPositioning = scope.options.levels.labels.position.quadrant !== 0;
+      
     outerRadius = scope.options.radius;
     innerRadius = scope.options.radius / scope.options.levels.count;
     period = 360 / scope.options.data.sides;
