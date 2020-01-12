@@ -4,12 +4,6 @@
 <head>
   <meta charset="utf-8">
   <title>PolygonChart.js</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.js"></script>
-  <script src="https://unpkg.com/popper.js@1"></script>
-  <script src="https://unpkg.com/tippy.js@5"></script>
 </head>
 
 <body>
@@ -24,18 +18,22 @@
 <script src="../../dist/polygonchart.umd.js"></script>
 
 <script type="text/javascript">
-  let sides = 3;
-
-  let data = generateRandomData(10, sides);
-
   let el = document.getElementById("polygon-chart");
 
   let chart = new window.PolygonChart({
     target: el,
     radius: 200,
     data: {
-      data: data,
-      sides: sides,
+      data: [
+        [
+          0.9121703,
+          0.6347141,
+          0.7224417,
+          0.1237715,
+          0.5747144,
+        ]
+      ],
+      sides: 5,
       tooltips: {
         roundTo: 2,
         percentage: true,
@@ -72,8 +70,8 @@
       labels: {
         enabled: true,
         position: {
-          spline: 0,
-          quadrant: 3,
+          spline: 1,
+          quadrant: 0,
         },
         colors: {
           normal: "#8B27D7",
