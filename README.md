@@ -37,6 +37,8 @@ Install peer dependencies `anime.js` (animations) and `tippjs.js` (tooltips).
 
 [Basic](https://github.com/miscavage/polygonchart.js/...)
 
+[Tippy](https://github.com/miscavage/polygonchart.js/...)
+
 [Animation](https://github.com/miscavage/polygonchart.js/...)
 
 [Square](https://github.com/miscavage/polygonchart.js/...)
@@ -160,11 +162,11 @@ Example (For a 5 sided polygon):
 {
   data: [
     [
-      0.310984
+      0.310984,
       0.590125,
-      0.203583
+      0.203583,
       0.420541,
-      0.159303
+      0.159303,
     ],
   ],
 }
