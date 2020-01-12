@@ -27,7 +27,7 @@
 
 ## • Installation
 
-Latest version: 0.0.1
+Latest version: 0.0.2
 
 `npm install polygonchart.js`
 
