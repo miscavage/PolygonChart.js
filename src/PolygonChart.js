@@ -91,6 +91,7 @@ function PolygonChart(options) {
   //
 
   const defaultOptions = {
+    target: null,
     radius: 0,
     data: {
       data: [],
