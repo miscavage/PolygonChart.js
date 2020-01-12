@@ -143,7 +143,7 @@ function PolygonChart(options) {
     },
     tippy: {},
     anime: {
-      duration: 10000,
+      duration: 1000,
       easing: 'linear',
     },
     animation: {
@@ -352,8 +352,6 @@ function PolygonChart(options) {
     const labelY = `${fe + delta}px`;
     const subY = (text.length - 1) * 6;
 
-    console.log("1fey:", fe);
-
     const label = ElementFactory.makeLabel({
       text,
       x: labelX,
@@ -364,10 +362,9 @@ function PolygonChart(options) {
 
     if (usingQuadrantPositioning) {
       const shouldFlip = scope.options.levels.labels.position.quadrant % scope.options.data.sides >= Math.floor(scope.options.data.sides / 2);
-      console.log("shouldFlip:", shouldFlip);
 
       if (isEven) {
-        //
+        // : todo :
       } else {
         let rotateY = `${fe + subY}px`;
         let divider = 0;
@@ -384,10 +381,9 @@ function PolygonChart(options) {
       let gt = scope.options.data.sides / 2;
       if (isEven) gt = Math.floor(gt);
       const shouldFlip = scope.options.levels.labels.position.spline % scope.options.data.sides >= gt;
-      console.log("shouldFlip:", shouldFlip);
 
       if (isEven) {
-        //
+        // : todo :
       } else {
         let rotateY = `${fe - 2 + subY}px`;
         let divider = 180 / scope.options.data.sides;
@@ -486,6 +482,10 @@ function PolygonChart(options) {
   };
 
   const loadAnimations = () => {
+    const anime = window.anime || null;
+    if (typeof anime === 'undefined' || anime === null) {
+      return;
+    }
     // : todo :
     const dataPolyAnimation = anime({
       ...scope.options.anime,
@@ -529,7 +529,11 @@ function PolygonChart(options) {
     setLabels();
     loadAnimations();
 
-    // : todo :
+    const tippy = window.tippy || null;
+    if (typeof tippy === 'undefined' || tippy === null) {
+      return scope;
+    }
+
     tippy('[data-tippy-content]', scope.options.tippy);
 
     return scope;
