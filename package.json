@@ -1,6 +1,6 @@
 {
   "name": "polygonchart.js",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "🔺 A library to graph numerical data using simple polygon visualizations.",
   "homepage": "https://github.com/miscavage/polygonchart.js",
   "author": "Mark Miscavage",
