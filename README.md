@@ -35,17 +35,32 @@ Install peer dependencies `anime.js` (animations) and `tippjs.js` (tooltips).
 
 ## • Demos and Examples
 
-[Basic](https://github.com/miscavage/polygonchart.js/...)
 
-[Tippy](https://github.com/miscavage/polygonchart.js/...)
+CodePen:
 
-[Animation](https://github.com/miscavage/polygonchart.js/...)
+PolygonChart.js Square: https://codepen.io/markmiscavage/pen/gOpYdpv
 
-[Square](https://github.com/miscavage/polygonchart.js/...)
+PolygonChart.js Pentagon: https://codepen.io/markmiscavage/pen/bGNMWdY
 
-[Triangle](https://github.com/miscavage/polygonchart.js/...)
+PolygonChart.js Animated 7-Sided Polygon: https://codepen.io/markmiscavage/pen/VwLZGeb
 
-[25 Sided Polygon](https://github.com/miscavage/polygonchart.js/...)
+PolygonChart.js 20 Sided Polygon: https://codepen.io/markmiscavage/pen/vYOBzNJ
+
+
+GitHub:
+
+Basic: https://github.com/miscavage/PolygonChart.js/blob/master/examples/basic/index.html
+
+Tippy: https://github.com/miscavage/PolygonChart.js/blob/master/examples/tippy/index.html
+
+Animation: https://github.com/miscavage/PolygonChart.js/blob/master/examples/animation/index.html
+
+Square: https://github.com/miscavage/PolygonChart.js/blob/master/examples/square/index.html
+
+Triangle: https://github.com/miscavage/PolygonChart.js/tree/master/examples/triangle/index.html
+
+25 Sided Polygon: https://github.com/miscavage/PolygonChart.js/tree/master/examples/polygon-25-sides/index.html
+
 
 ## • Documentation
 Below you will find all of the information needed to configure a polygon chart. Included is a detailed analysis of each value, its defaults and some informational examples. You will also find function calls, their parameters and descriptions too.
