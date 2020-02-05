@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="http://polygonchart.com">
-    <img src="/assets/5-sided-polygon-animation.gif" width="250"/>
+    <img src="https://github.com/miscavage/PolygonChart.js/raw/master/assets/5-sided-polygon-animation.gif" width="250"/>
   </a>
   <br>
   PolygonChart.js
@@ -497,6 +497,12 @@ chart.reload();
 | Chrome | Safari | IE / Edge | Firefox | Opera |
 | --- | --- | --- | --- | --- |
 | 24+ | 8+ | 11+ | 32+ | 15+ |
+
+## • TODO
+
+- Fix labels for spline, quadrant on all polygons to ensure correct positioning
+- Replace third-party dependencies with built-in functionality
+
 
 ## • Say Hi
 
